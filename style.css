@@ -1,0 +1,765 @@
+/* Original Armenian Fonts - Local */
+@font-face {
+  font-family: "GHEAMariam";
+  src: url("assets/fonts/GHEAMariam-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GHEAMariam";
+  src: url("assets/fonts/GHEAMariam-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "ArmenianDecorativeU";
+  src: url("assets/fonts/ArmenianDecorativeU-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --color-text-main: #1a1a1a; /* Sophisticated deep charcoal */
+  --color-text-body: #333333;
+  --color-text-secondary: #666666;
+  --color-bg: #ffffff; /* Pure, crisp white */
+  --color-bg-alt: #fafafa; /* Extremely subtle grey for contrast */
+  --color-accent: #8e8e8e; /* Muted, sophisticated grey-scale accent */
+  --color-error: #d80000;
+  --font-serif: "GHEAMariam", serif;
+  --font-sans: "GHEAMariam", sans-serif;
+  --font-decorative: "ArmenianDecorativeU", cursive;
+  --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --section-spacing: 120px;
+  --container-width: 800px; /* Even tighter for a more editorial feel */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-body);
+  background-color: var(--color-bg);
+  line-height: 2; /* Increased for airy feel */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 90%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+section {
+  padding: var(--section-spacing) 0;
+}
+
+/* Remove padding for the hero section specifically */
+section#hero {
+  padding: 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem; /* Smaller, more elegant */
+  margin-bottom: 50px;
+  text-align: center;
+  font-weight: 400;
+  color: var(--color-text-main);
+  letter-spacing: 3px; /* Significant letter spacing */
+  text-transform: uppercase;
+}
+
+/* 1. Hero Section - Premium Fullscreen */
+.hero {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Names always at the bottom level */
+  align-items: center;
+  overflow: hidden;
+  background-color: #000; /* Fallback */
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/img/gallery-1.jpg');
+  background-size: cover;
+  background-position: center 10%;
+  z-index: 0;
+  transform: scale(1.15); /* Start zoomed in */
+  animation: bgZoomOut 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes bgZoomOut {
+  0% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@media (min-width: 1025px) {
+  .hero-bg {
+    background-position: center 15%;
+    background-attachment: fixed; /* Parallax only on desktop */
+  }
+}
+
+/* Intro Curtain Overlay */
+.white-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 9999;
+  animation: slideUpFade 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 0.3s;
+  pointer-events: none;
+}
+
+@keyframes slideUpFade {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+
+/* Subtle overlay that only darkens the bottom part for text legibility */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: 20vh; /* Restore original spacing */
+  text-align: center;
+}
+
+.hero-title {
+  font-family: var(--font-decorative);
+  font-size: 3.5rem; /* Better scaling */
+  font-weight: 400;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 1025px) {
+  .hero-title {
+    font-size: 6rem;
+    letter-spacing: 2px;
+  }
+}
+
+.hero-title span {
+  display: block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: textFadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Stagger the entrance of the names and ampersand */
+.hero-title span:nth-child(1) { animation-delay: 1.0s; }
+.hero-title span.ampersand { animation-delay: 1.2s; }
+.hero-title span:nth-child(3) { animation-delay: 1.4s; }
+
+@keyframes textFadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title .ampersand {
+  font-size: 0.6em; /* Slightly smaller */
+  line-height: 0.7; /* Tighter against names */
+  margin: 15px 0; /* More breathing room */
+  opacity: 0.85; /* More delicate */
+  font-style: italic;
+  font-family: var(--font-decorative); /* Ensure elegant font */
+  color: #e0d5c1; /* Soft champagne touch */
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: #fff;
+  opacity: 0;
+  animation: fadeInScroll 1s ease forwards;
+  animation-delay: 2.2s;
+}
+
+@keyframes fadeInScroll {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.scroll-down span {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.scroll-icon-wrapper {
+  margin-top: 5px;
+}
+
+.scroll-icon-wrapper svg {
+  animation: bounce 2s infinite;
+  opacity: 0.8;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+
+/* 3. Wedding Date & Time */
+.date-time-section {
+  background-color: var(--color-bg-alt);
+}
+
+.calendar-wrapper {
+  margin-bottom: 80px;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 10px;
+}
+
+.cal-header {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.7rem;
+  padding-bottom: 25px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--color-text-body);
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+.day:not(.empty):hover {
+  background-color: var(--color-bg-alt);
+}
+
+.day.heart {
+  color: #1a1a1a;
+  background-color: transparent;
+  font-weight: 700;
+  box-shadow: none;
+  position: relative;
+  border: 1px solid #1a1a1a; /* Elegant ring instead of solid block */
+}
+
+.day.heart::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #d80000;
+  border-radius: 50%;
+}
+
+.countdown-title {
+  text-align: center;
+  margin-bottom: 60px;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px; /* More breathable */
+}
+
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  min-width: 70px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.timer-item span {
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--color-text-main);
+  line-height: 1;
+}
+
+.timer-item small {
+  font-size: 0.65rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 15px;
+  font-weight: 300;
+}
+
+/* 4. Event Description */
+.description-section .message-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 400;
+  color: var(--color-text-main);
+}
+
+.description-section .message-text {
+  font-size: 1rem;
+  max-width: 550px;
+  margin: 0 auto;
+  color: var(--color-text-body);
+  line-height: 2;
+  opacity: 0.8;
+}
+
+/* Transition Image */
+.transition-image {
+  width: 100%;
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* 5. Location Section */
+.location-section {
+  background: var(--color-bg);
+}
+
+.timeline {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px; /* Thinner line */
+  background: #bfb5a1; /* Champagne/warm grey instead of stark black */
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  position: relative;
+  width: 50%;
+  padding: 0 40px;
+  margin-bottom: 60px;
+}
+
+.timeline-event:nth-child(odd) {
+  left: 0;
+  text-align: right;
+  padding-right: 40px;
+}
+
+.timeline-event:nth-child(even) {
+  left: 50%;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.timeline-event::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 12px; /* Slightly smaller dot */
+  height: 12px;
+  background: #bfb5a1; /* Match the line */
+  border: 3px solid var(--color-bg); /* Cut out effect */
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0 0 1px #bfb5a1; /* Subtle outer ring */
+}
+
+.timeline-event:nth-child(odd)::after {
+  right: -6px;
+}
+
+.timeline-event:nth-child(even)::after {
+  left: -6px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-event:nth-child(odd) .event-info {
+  align-items: flex-end;
+}
+
+.timeline-event:nth-child(even) .event-info {
+  align-items: flex-start;
+}
+
+.event-time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 5px;
+}
+
+.event-name {
+  display: block;
+  font-size: 1.4rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.event-location {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.map-link {
+  display: inline-block;
+  padding: 8px 25px;
+  text-decoration: none;
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-text-main);
+  border-radius: 30px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+.map-link:hover {
+  background: var(--color-text-main);
+  color: var(--color-bg);
+}
+
+/* Major Locations */
+.major-locations {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+}
+
+.location-block {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  background: #fff;
+  padding: 0 0 40px 0; /* Space for text below image */
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06); /* Soft premium shadow */
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden; /* Keep image inside rounded corners */
+}
+
+.location-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+}
+
+.location-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 35px;
+  border-radius: 12px 12px 0 0; /* Clean top edges */
+  transition: transform 0.6s ease;
+}
+
+.location-block:hover .location-image {
+  transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.location-name {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-text-main);
+  margin-bottom: 10px;
+}
+
+.location-time {
+  display: block;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* 6. Dress Code */
+/* 6. Photo Gallery */
+.gallery-section {
+  background: var(--color-bg);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.gallery-item {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-radius: 8px; /* Softer edges */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  transition: all 0.5s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.08); /* More pronounced romantic zoom */
+}
+
+.gallery-item:hover {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transform: translateY(-5px);
+}
+
+/* 8. Footer */
+.footer {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.footer-title {
+  font-family: var(--font-decorative);
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 15px;
+  color: var(--color-text-main);
+}
+
+.footer-note {
+  font-size: 0.6rem;
+  color: var(--color-text-secondary);
+  margin-top: 30px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  :root {
+    --section-spacing: 60px;
+  }
+  .section-title {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .calendar-wrapper {
+    padding: 20px 0;
+    margin-bottom: 40px;
+  }
+  .calendar-grid {
+    gap: 5px;
+  }
+  .day {
+    font-size: 0.75rem;
+  }
+  .cal-header {
+    font-size: 0.6rem;
+    padding-bottom: 15px;
+  }
+  .timer-grid {
+    gap: 15px;
+  }
+  .timer-item {
+    min-width: 60px;
+  }
+  .timer-item span {
+    font-size: 1.8rem;
+  }
+  .timer-item small {
+    font-size: 0.6rem;
+    margin-top: 10px;
+  }
+  .container {
+    width: 90%;
+  }
+  
+  /* Timeline Mobile */
+  .timeline::before {
+    left: 20px;
+  }
+  .timeline-event {
+    width: 100%;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    left: 0 !important;
+    text-align: left !important;
+    margin-bottom: 40px;
+  }
+  .timeline-event::after {
+    left: 12px !important;
+  }
+  .timeline-event:nth-child(odd) .event-info,
+  .timeline-event:nth-child(even) .event-info {
+    align-items: flex-start;
+  }
+  
+  .transition-image {
+    height: 35vh;
+  }
+  
+  .major-locations {
+    gap: 40px;
+    margin-top: 40px;
+  }
+  
+  .location-image {
+    margin-bottom: 20px;
+  }
+
+  .footer-title {
+    font-size: 2.2rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .calendar-grid {
+    gap: 2px;
+  }
+  .timer-grid {
+    gap: 10px;
+  }
+  .timer-item {
+    min-width: 50px;
+  }
+}
+
+/* 9. Music Toggle */
+.music-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.music-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--color-text-main);
+}
+
+.music-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.music-toggle.playing .music-icon {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .music-toggle {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
