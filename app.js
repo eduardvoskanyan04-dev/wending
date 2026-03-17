@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (diff < 0) {
       clearInterval(timerInterval);
       const timerElement = document.getElementById("countdown-timer");
-      if (timerElement) timerElement.innerHTML = "Շնորհավոր";
+      if (timerElement) timerElement.innerHTML = "\u0547\u0576\u0578\u0580\u0570\u0561\u057E\u0578\u0580";
       return;
     }
 
@@ -31,15 +31,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const minsEl = document.getElementById("minutes");
     const secsEl = document.getElementById("seconds");
 
-    if (daysEl) daysEl.innerText = days.toString().padStart(2, "0");
-    if (hoursEl) hoursEl.innerText = hours.toString().padStart(2, "0");
-    if (minsEl) minsEl.innerText = minutes.toString().padStart(2, "0");
-    if (secsEl) secsEl.innerText = seconds.toString().padStart(2, "0");
+    // Flip animation on change
+    const update = (el, val) => {
+      if (!el) return;
+      const str = val.toString().padStart(2, "0");
+      if (el.innerText !== str) {
+        el.classList.add("flip");
+        setTimeout(() => el.classList.remove("flip"), 400);
+        el.innerText = str;
+      }
+    };
+
+    update(daysEl, days);
+    update(hoursEl, hours);
+    update(minsEl, minutes);
+    update(secsEl, seconds);
   };
 
   const timerInterval = setInterval(updateTimer, 1000);
   updateTimer();
 
+  // Floating Hearts
+  const heartsContainer = document.getElementById("floating-hearts");
+  if (heartsContainer) {
+    const hearts = ['\u2665', '\u2764', '\u2661'];
+    const createHeart = () => {
+      const heart = document.createElement("span");
+      heart.className = "heart-particle";
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.fontSize = (Math.random() * 12 + 10) + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+      heart.style.animationDelay = (Math.random() * 2) + "s";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 12000);
+    };
+    setInterval(createHeart, 3000);
+  }
+
+  // Scroll reveal for description section
+  const revealElements = document.querySelectorAll('.description-section .message-title, .description-section .message-text');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), index * 200);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  revealElements.forEach(el => observer.observe(el));
 
   // Background Music Logic
   const audio = document.getElementById("bg-music");
@@ -80,6 +120,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Try playing immediately
   playMusic();
-
-
 });

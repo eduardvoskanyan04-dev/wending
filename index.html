@@ -12,11 +12,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floating-hearts"></div>
+
     <!-- 1. Hero Section -->
     <section id="hero" class="hero section-hero">
         <div class="white-overlay"></div>
         <div class="hero-bg"></div>
         <div class="hero-content">
+            <div class="hero-date">04.06.2026</div>
             <h1 class="hero-title">
                 <span>Խաչիկ</span>
                 <span class="ampersand">&</span>
@@ -34,11 +38,21 @@
 
 
 
+    <!-- Decorative Divider -->
+    <div class="section-divider" data-aos="fade-up">
+        <svg viewBox="0 0 200 30" class="ornament-svg">
+            <path d="M0,15 Q50,0 100,15 Q150,30 200,15" fill="none" stroke="#bfb5a1" stroke-width="1"/>
+            <circle cx="100" cy="15" r="4" fill="#bfb5a1"/>
+            <circle cx="70" cy="10" r="2" fill="#bfb5a1" opacity="0.5"/>
+            <circle cx="130" cy="20" r="2" fill="#bfb5a1" opacity="0.5"/>
+        </svg>
+    </div>
+
     <!-- 3. Wedding Date & Time -->
     <section id="date-time" class="section date-time-section" data-aos="fade-up">
         <div class="container">
             <h3 class="section-title">Հունիս 4, 2026</h3>
-            <div class="calendar-wrapper">
+            <div class="calendar-wrapper" data-aos="zoom-in" data-aos-delay="200">
                 <div class="calendar-grid">
                     <div class="cal-header">Երկ</div><div class="cal-header">Երք</div><div class="cal-header">Չոր</div><div class="cal-header">Հին</div><div class="cal-header">Ուր</div><div class="cal-header">Շաբ</div><div class="cal-header">Կիր</div>
                     <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day heart">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
@@ -71,7 +85,7 @@
     </section>
 
     <!-- Transition Image -->
-    <div class="transition-image" style="background-image: url('assets/img/gallery-4.jpg');"></div>
+    <div class="transition-image" data-aos="fade" data-aos-duration="1500" style="background-image: url('assets/img/gallery-4.jpg');"></div>
 
     <!-- 5. Event Location Section -->
     <section id="location" class="section location-section" data-aos="fade-up">
@@ -104,7 +118,7 @@
                     <a href="https://yandex.com/maps/?text=Երևան, Սուրբ Մարիամ Աստվածածին Եկեղեցի Նորք Մարաշ" class="map-link" target="_blank">Քարտեզ</a>
                 </div>
                 
-                <div class="location-block" data-aos="fade-up">
+                <div class="location-block" data-aos="fade-up" data-aos-delay="200">
                     <div class="location-image" style="background-image: url('assets/img/restaurant.png');"></div>
                     <h4 class="location-name">Ռեստորան</h4>
                     <span class="location-time" style="font-weight:bold;">17:00</span>
@@ -119,11 +133,11 @@
         <div class="container">
             <h3 class="section-title">Լուսանկարներ</h3>
             <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up"><img src="assets/img/gallery-1.jpg" alt="Gallery Photo 1"></div>
-                <div class="gallery-item" data-aos="fade-up"><img src="assets/img/gallery-2.jpg" alt="Gallery Photo 2"></div>
-                <div class="gallery-item" data-aos="fade-up"><img src="assets/img/gallery-3.jpg" alt="Gallery Photo 3"></div>
-                <div class="gallery-item" data-aos="fade-up"><img src="assets/img/gallery-4.jpg" alt="Gallery Photo 4"></div>
-                <div class="gallery-item" data-aos="fade-up"><img src="assets/img/gallery-5.jpg" alt="Gallery Photo 5"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/gallery-1.jpg" alt="Gallery Photo 1"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/gallery-2.jpg" alt="Gallery Photo 2"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="assets/img/gallery-3.jpg" alt="Gallery Photo 3"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300"><img src="assets/img/gallery-4.jpg" alt="Gallery Photo 4"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400"><img src="assets/img/gallery-5.jpg" alt="Gallery Photo 5"></div>
             </div>
         </div>
     </section>
@@ -147,6 +161,7 @@
     <!-- 8. Footer -->
     <footer class="footer" data-aos="fade-up">
         <div class="container text-center">
+            <div class="footer-heart">&#10084;</div>
             <h3 class="footer-title">Սիրով սպասում ենք</h3>
             <p class="footer-note">Պատրաստված է invito-ի կողմից</p>
         </div>
