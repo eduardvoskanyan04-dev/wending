@@ -376,7 +376,12 @@ section#hero {
   height: 60vh;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+}
+
+@media (min-width: 1025px) {
+  .transition-image {
+    background-attachment: fixed;
+  }
 }
 
 /* 5. Location Section */
