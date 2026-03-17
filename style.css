@@ -376,6 +376,24 @@ section#hero {
   height: 60vh;
   background-size: cover;
   background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.transition-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.15) 0%,
+    rgba(0,0,0,0.05) 50%,
+    rgba(255,255,255,0.15) 100%
+  );
+  pointer-events: none;
 }
 
 @media (min-width: 1025px) {
@@ -682,7 +700,7 @@ section#hero {
   }
   
   .transition-image {
-    height: 35vh;
+    height: 45vh;
   }
   
   .major-locations {
